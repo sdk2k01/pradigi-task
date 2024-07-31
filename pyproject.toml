@@ -1,0 +1,9 @@
+[project]
+name = "pradigi-task"
+version = "0.0.1"
+requires-python = ">=3.12"
+dependencies = ["qdrant-client[fastembed]", "python-dotenv", "llama-index", "llama-index-embeddings-fastembed", "llama-index-vector-stores-qdrant", "llama-index-llms-mistralai", "llama-index-readers-web"]
+
+
+[project.optional-dependencies]
+dev = ["ruff", "black"]
