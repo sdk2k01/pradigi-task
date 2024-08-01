@@ -3,20 +3,21 @@ from re import sub
 from llama_index.core import Document
 import uuid
 
+from llama_index.core.schema import TransformComponent
 
-class DocumentTransformer:
+
+class DocumentTransformer(TransformComponent):
     """
     Class implementing some useful document transformation functions.
     """
 
-    def __init__(self, doc: Document) -> None:
-        self.doc = doc
-
-    def __call__(self) -> Any:
-        self.doc = self.generate_doc_id(self.doc)
+    def __call__(self, nodes, **kwargs) -> Any:
+        for node in nodes:
+            node.text = self.clean_string(node.text)
+        return nodes
 
     @staticmethod
-    def clean_string(text, **kwargs):
+    def clean_string(text):
         # Remove all tab characters and any surrounding spaces
         text = sub(r"\t\s*", "", text)
 

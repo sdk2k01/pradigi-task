@@ -1,11 +1,13 @@
-from llama_index.core import VectorStoreIndex, StorageContext, ServiceContext
+from llama_index.core import VectorStoreIndex, StorageContext
+from llama_index.core.text_splitter import SentenceSplitter
+from llama_index.core.settings import Settings
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 from llama_index.embeddings.fastembed import FastEmbedEmbedding
 from qdrant_client import QdrantClient
 import os
 
 from .utils import get_site_text, update_sitemap_recursively
-from .docs import DocumentTransformer
+from .doc_utils import DocumentTransformer
 
 
 def ingest(
@@ -16,23 +18,24 @@ def ingest(
     """
     docs = get_site_text(sitemap)  # Resource Intensive
 
-    map(DocumentTransformer.generate_doc_id, docs)
+    docs = list(map(DocumentTransformer.generate_doc_id, docs))
 
-    # transformations = [
-    #     DocumentTransformer.clean_string,
-    # ]
+    transformations = [
+        DocumentTransformer(),
+        SentenceSplitter(chunk_size=400, chunk_overlap=40),
+    ]
+
+    Settings.llm = None
+    Settings.embed_model = FastEmbedEmbedding(model_name="BAAI/bge-small-en-v1.5")
+    Settings.transformations = transformations
 
     qdrant_store = QdrantVectorStore(collection_name=collection_name, client=qclient)
     storage_context = StorageContext.from_defaults(vector_store=qdrant_store)
-    service_context = ServiceContext.from_defaults(
-        llm=None, embed_model=FastEmbedEmbedding(model_name="BAAI/bge-small-en-v1.5")
-    )
+
     VectorStoreIndex.from_documents(
         docs,
         storage_context=storage_context,
         show_progress=True,
-        # transformations=transformations,
-        service_context=service_context,
     )
 
 
@@ -52,7 +55,7 @@ if __name__ == "__main__":
     )
 
     # Recursively generate sitemap at depth=2
-    sitemap = update_sitemap_recursively(base_sitemap, 1)
+    sitemap = update_sitemap_recursively(base_sitemap, 2)
 
     # Ingest
     ingest(sitemap, qclient, os.getenv("QDRANT_CN"))

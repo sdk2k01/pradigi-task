@@ -16,12 +16,25 @@ PROJ_BASE_URL=https://pratham.org/
 In a Python 3.12 environment shell of your choice, run the following command:
 
 ```bash
-python -m pip install pre-commit pip-tools
-pip-sync requirements/requirements.txt
+(venv) python -m pip install pre-commit pip-tools
+(venv) pip-sync requirements/requirements.txt
 ```
 
 ### Run locally in dev mode:
 ```bash
-pip-sync requirements/requirements.txt requirements/requirements-dev.txt
-
+(venv) pip-sync requirements/requirements.txt requirements/requirements-dev.txt
 ```
+
+## Ingestion:
+To ingest data (from pre-defined sources), run the following:
+```bash
+(venv) python -m src.ingest
+```
+
+## Chat UI:
+To run chat ui, run the following:
+```bash
+(venv) python -m src.chat
+```
+
+Then open a new tab in your favourite browser, and enter http://localhost:7860/ into the address bar.

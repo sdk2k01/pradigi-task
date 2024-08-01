@@ -4,6 +4,8 @@
 #
 #    pip-compile --extra=dev --output-file=requirements/requirements-dev.txt pyproject.toml
 #
+aiofiles==23.2.1
+    # via gradio
 aiohappyeyeballs==2.3.4
     # via aiohttp
 aiohttp==3.10.0
@@ -17,8 +19,11 @@ annotated-types==0.7.0
     # via pydantic
 anyio==4.4.0
     # via
+    #   gradio
     #   httpx
     #   openai
+    #   starlette
+    #   watchfiles
 attrs==23.2.0
     # via
     #   aiohttp
@@ -46,10 +51,16 @@ click==8.1.7
     # via
     #   black
     #   nltk
+    #   typer
+    #   uvicorn
 coloredlogs==15.0.1
     # via onnxruntime
+contourpy==1.2.1
+    # via matplotlib
 cssselect==1.2.0
     # via newspaper3k
+cycler==0.12.1
+    # via matplotlib
 dataclasses-json==0.6.7
     # via
     #   llama-index-core
@@ -64,6 +75,14 @@ dirtyjson==1.0.8
     #   llama-index-legacy
 distro==1.9.0
     # via openai
+dnspython==2.6.1
+    # via email-validator
+email-validator==2.2.0
+    # via fastapi
+fastapi==0.111.1
+    # via gradio
+fastapi-cli==0.0.4
+    # via fastapi
 fastembed==0.2.7
     # via
     #   llama-index-embeddings-fastembed
@@ -72,21 +91,30 @@ feedfinder2==0.0.4
     # via newspaper3k
 feedparser==6.0.11
     # via newspaper3k
+ffmpy==0.4.0
+    # via gradio
 filelock==3.15.4
     # via
     #   huggingface-hub
     #   tldextract
 flatbuffers==24.3.25
     # via onnxruntime
+fonttools==4.53.1
+    # via matplotlib
 frozenlist==1.4.1
     # via
     #   aiohttp
     #   aiosignal
 fsspec==2024.6.1
     # via
+    #   gradio-client
     #   huggingface-hub
     #   llama-index-core
     #   llama-index-legacy
+gradio==4.40.0
+    # via pradigi-task (pyproject.toml)
+gradio-client==1.2.0
+    # via gradio
 greenlet==3.0.3
     # via
     #   playwright
@@ -101,6 +129,7 @@ grpcio-tools==1.65.2
 h11==0.14.0
     # via
     #   httpcore
+    #   uvicorn
     #   wsproto
 h2==4.1.0
     # via httpx
@@ -110,8 +139,13 @@ html2text==2024.2.26
     # via llama-index-readers-web
 httpcore==1.0.5
     # via httpx
+httptools==0.6.1
+    # via uvicorn
 httpx[http2]==0.27.0
     # via
+    #   fastapi
+    #   gradio
+    #   gradio-client
     #   llama-cloud
     #   llama-index-core
     #   llama-index-legacy
@@ -121,6 +155,8 @@ httpx[http2]==0.27.0
 huggingface-hub==0.20.3
     # via
     #   fastembed
+    #   gradio
+    #   gradio-client
     #   tokenizers
 humanfriendly==10.0
     # via coloredlogs
@@ -129,15 +165,24 @@ hyperframe==6.0.1
 idna==3.7
     # via
     #   anyio
+    #   email-validator
     #   httpx
     #   requests
     #   tldextract
     #   trio
     #   yarl
+importlib-resources==6.4.0
+    # via gradio
 jieba3k==0.35.1
     # via newspaper3k
+jinja2==3.1.4
+    # via
+    #   fastapi
+    #   gradio
 joblib==1.4.2
     # via nltk
+kiwisolver==1.4.5
+    # via matplotlib
 llama-cloud==0.0.11
     # via llama-index-indices-managed-llama-cloud
 llama-index==0.10.58
@@ -208,8 +253,18 @@ loguru==0.7.2
     # via fastembed
 lxml==5.2.2
     # via newspaper3k
+markdown-it-py==3.0.0
+    # via rich
+markupsafe==2.1.5
+    # via
+    #   gradio
+    #   jinja2
 marshmallow==3.21.3
     # via dataclasses-json
+matplotlib==3.9.1
+    # via gradio
+mdurl==0.1.2
+    # via markdown-it-py
 mistralai==0.4.2
     # via llama-index-llms-mistralai
 mpmath==1.3.0
@@ -239,9 +294,12 @@ nltk==3.8.1
     #   newspaper3k
 numpy==1.26.4
     # via
+    #   contourpy
     #   fastembed
+    #   gradio
     #   llama-index-core
     #   llama-index-legacy
+    #   matplotlib
     #   onnx
     #   onnxruntime
     #   pandas
@@ -256,25 +314,33 @@ openai==1.37.1
     #   llama-index-core
     #   llama-index-legacy
 orjson==3.10.6
-    # via mistralai
+    # via
+    #   gradio
+    #   mistralai
 outcome==1.3.0.post0
     # via trio
 packaging==24.1
     # via
     #   black
     #   chromedriver-autoinstaller
+    #   gradio
+    #   gradio-client
     #   huggingface-hub
     #   marshmallow
+    #   matplotlib
     #   onnxruntime
 pandas==2.2.2
     # via
+    #   gradio
     #   llama-index-core
     #   llama-index-legacy
 pathspec==0.12.1
     # via black
 pillow==10.4.0
     # via
+    #   gradio
     #   llama-index-core
+    #   matplotlib
     #   newspaper3k
 platformdirs==4.2.2
     # via black
@@ -289,31 +355,48 @@ protobuf==5.27.3
     #   onnxruntime
 pydantic==2.8.2
     # via
+    #   fastapi
+    #   gradio
     #   llama-cloud
     #   mistralai
     #   openai
     #   qdrant-client
 pydantic-core==2.20.1
     # via pydantic
+pydub==0.25.1
+    # via gradio
 pyee==11.1.0
     # via playwright
+pygments==2.18.0
+    # via rich
+pyparsing==3.1.2
+    # via matplotlib
 pypdf==4.3.1
     # via llama-index-readers-file
 pysocks==1.7.1
     # via urllib3
 python-dateutil==2.9.0.post0
     # via
+    #   matplotlib
     #   newspaper3k
     #   pandas
 python-dotenv==1.0.1
-    # via pradigi-task (pyproject.toml)
+    # via
+    #   pradigi-task (pyproject.toml)
+    #   uvicorn
+python-multipart==0.0.9
+    # via
+    #   fastapi
+    #   gradio
 pytz==2024.1
     # via pandas
 pyyaml==6.0.1
     # via
+    #   gradio
     #   huggingface-hub
     #   llama-index-core
     #   newspaper3k
+    #   uvicorn
 qdrant-client[fastembed]==1.10.1
     # via
     #   llama-index-vector-stores-qdrant
@@ -337,12 +420,20 @@ requests==2.32.3
     #   tldextract
 requests-file==2.1.0
     # via tldextract
+rich==13.7.1
+    # via typer
 ruff==0.5.5
-    # via pradigi-task (pyproject.toml)
+    # via
+    #   gradio
+    #   pradigi-task (pyproject.toml)
 selenium==4.23.1
     # via llama-index-readers-web
+semantic-version==2.10.0
+    # via gradio
 sgmllib3k==1.0.0
     # via feedparser
+shellingham==1.5.4
+    # via typer
 six==1.16.0
     # via
     #   feedfinder2
@@ -364,6 +455,8 @@ sqlalchemy[asyncio]==2.0.31
     #   llama-index-core
     #   llama-index-legacy
     #   sqlalchemy
+starlette==0.37.2
+    # via fastapi
 striprtf==0.0.26
     # via llama-index-readers-file
 sympy==1.13.1
@@ -382,6 +475,8 @@ tldextract==5.1.2
     # via newspaper3k
 tokenizers==0.15.2
     # via fastembed
+tomlkit==0.12.0
+    # via gradio
 tqdm==4.66.4
     # via
     #   fastembed
@@ -395,8 +490,15 @@ trio==0.26.0
     #   trio-websocket
 trio-websocket==0.11.1
     # via selenium
+typer==0.12.3
+    # via
+    #   fastapi-cli
+    #   gradio
 typing-extensions==4.12.2
     # via
+    #   fastapi
+    #   gradio
+    #   gradio-client
     #   huggingface-hub
     #   llama-index-core
     #   llama-index-legacy
@@ -406,6 +508,7 @@ typing-extensions==4.12.2
     #   pyee
     #   selenium
     #   sqlalchemy
+    #   typer
     #   typing-inspect
 typing-inspect==0.9.0
     # via
@@ -416,12 +519,25 @@ tzdata==2024.1
     # via pandas
 urllib3[socks]==2.2.2
     # via
+    #   gradio
     #   llama-index-readers-web
     #   qdrant-client
     #   requests
     #   selenium
+uvicorn[standard]==0.30.4
+    # via
+    #   fastapi
+    #   gradio
+uvloop==0.19.0
+    # via uvicorn
+watchfiles==0.22.0
+    # via uvicorn
 websocket-client==1.8.0
     # via selenium
+websockets==12.0
+    # via
+    #   gradio-client
+    #   uvicorn
 wrapt==1.16.0
     # via
     #   deprecated
