@@ -915,6 +915,7 @@ llama-index-core==0.10.58 \
     #   llama-index-llms-mistralai
     #   llama-index-llms-openai
     #   llama-index-multi-modal-llms-openai
+    #   llama-index-postprocessor-jinaai-rerank
     #   llama-index-program-openai
     #   llama-index-question-gen-openai
     #   llama-index-readers-file
@@ -958,6 +959,10 @@ llama-index-multi-modal-llms-openai==0.1.8 \
     --hash=sha256:16ae72ac3c5201ebd1d4b62203930c1768149ec85c3e477e5e51ed2ef8db1067 \
     --hash=sha256:5e2c94a6415a2509cad035ccea34461959ae327a5900d3e820417e9ebb9a13ec
     # via llama-index
+llama-index-postprocessor-jinaai-rerank==0.1.6 \
+    --hash=sha256:09c1043eddc985ceb22ee08231c9ae3faa38bececaebe7128b75f2be01fb6c54 \
+    --hash=sha256:1eeb038bf20a6ecb7d1de70f04fa04ea8d649f2f56d10862c78251511a441ef4
+    # via pradigi-task (pyproject.toml)
 llama-index-program-openai==0.1.7 \
     --hash=sha256:33489b573c1050a3f583ff68fcbc4bcbd49f29e74f3e5baea08ab0d5f363403c \
     --hash=sha256:bf7eb61a073381714be5a049d93b40044dfe51bd4333bee539d1532b7407621f

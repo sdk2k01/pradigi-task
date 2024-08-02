@@ -204,6 +204,7 @@ llama-index-core==0.10.58
     #   llama-index-llms-mistralai
     #   llama-index-llms-openai
     #   llama-index-multi-modal-llms-openai
+    #   llama-index-postprocessor-jinaai-rerank
     #   llama-index-program-openai
     #   llama-index-question-gen-openai
     #   llama-index-readers-file
@@ -233,6 +234,8 @@ llama-index-llms-openai==0.1.27
     #   llama-index-question-gen-openai
 llama-index-multi-modal-llms-openai==0.1.8
     # via llama-index
+llama-index-postprocessor-jinaai-rerank==0.1.6
+    # via pradigi-task (pyproject.toml)
 llama-index-program-openai==0.1.7
     # via
     #   llama-index
