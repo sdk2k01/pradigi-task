@@ -50,9 +50,9 @@ While running in dev mode, one can also use the [Jina AI Reranker](https://jina.
 1. Set `JINA_RR_API_KEY` in `.env`.
 
 2. Uncomment the following lines from [chat.py](src/chat.py):  
-a. [line 36](src/chat.py#L36)  
-b. [line 42](src/chat.py#L42)
+a. [line 37](src/chat.py#L37)  
+b. [line 43](src/chat.py#L43)
 
-3. Change the `similarity_top_k` argument from `10` to  `50` or greater at [line 41](src/chat.py#L41). Higher value means higher cost per request.
+3. Change the `similarity_top_k` argument from `10` to  `50` or greater at [line 42](src/chat.py#L42). Higher value means higher cost per request.
 
 For most of our use-cases, `top_k = 10` is a good standard value and doesnot require reranker api.
