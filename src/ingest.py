@@ -32,7 +32,6 @@ def ingest(
     docs.append(Document(text="\n".join(social_media_links)))
     docs = list(map(DocumentTransformer.generate_doc_id, docs))
 
-    # Settings.llm = None
     Settings.llm = CustomMistralAI(
         model="open-mistral-nemo",
         api_key=mistral_api_key,
